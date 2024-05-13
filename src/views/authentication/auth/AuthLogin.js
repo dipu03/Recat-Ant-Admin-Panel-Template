@@ -1,71 +1,67 @@
-import React from 'react';
-import {
-    Box,
-    Typography,
-    FormGroup,
-    FormControlLabel,
-    Button,
-    Stack,
-    Checkbox
-} from '@mui/material';
+import { Typography, Button, Checkbox, Space, Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
-
-import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-
 const AuthLogin = ({ title, subtitle, subtext }) => (
     <>
         {title ? (
-            <Typography fontWeight="700" variant="h2" mb={1}>
+            <Typography.Title level={2} style={{ fontWeight: '700', marginBottom: '8px' }}>
                 {title}
-            </Typography>
+            </Typography.Title>
         ) : null}
 
         {subtext}
 
-        <Stack>
-            <Box>
-                <Typography variant="subtitle1"
-                    fontWeight={600} component="label" htmlFor='username' mb="5px">Username</Typography>
-                <CustomTextField id="username" variant="outlined" fullWidth />
-            </Box>
-            <Box mt="25px">
-                <Typography variant="subtitle1"
-                    fontWeight={600} component="label" htmlFor='password' mb="5px" >Password</Typography>
-                <CustomTextField id="password" type="password" variant="outlined" fullWidth />
-            </Box>
-            <Stack justifyContent="space-between" direction="row" alignItems="center" my={2}>
-                <FormGroup>
-                    <FormControlLabel
-                        control={<Checkbox defaultChecked />}
-                        label="Remeber this Device"
-                    />
-                </FormGroup>
-                <Typography
-                    component={Link}
-                    to="/"
-                    fontWeight="500"
-                    sx={{
-                        textDecoration: 'none',
-                        color: 'primary.main',
-                    }}
-                >
-                    Forgot Password ?
-                </Typography>
-            </Stack>
-        </Stack>
-        <Box>
-            <Button
-                color="primary"
-                variant="contained"
-                size="large"
-                fullWidth
-                component={Link}
-                to="/"
-                type="submit"
+        <Form
+            name="loginForm"
+            onFinish={(values) => {
+            }}
+            layout='vertical'
+            initialValues={{
+                remember: true,
+            }}
+        >
+            <Form.Item
+                label="Username"
+                name="username"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input your username!',
+                    },
+                ]}
             >
-                Sign In
-            </Button>
-        </Box>
+                <Input />
+            </Form.Item>
+
+            <Form.Item
+                label="Password"
+                name="password"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input your password!',
+                    },
+                ]}
+
+            >
+                <Input.Password />
+            </Form.Item>
+
+            <Form.Item>
+                <Space style={{ width: '100%', justifyContent: 'space-between' }}>
+                    <Checkbox defaultChecked>Remember this Device</Checkbox>
+                    <Typography.Text>
+                        <Link to="/" style={{ color: '#1890ff' }}>Forgot Password?</Link>
+                    </Typography.Text>
+                </Space>
+            </Form.Item>
+
+            <Form.Item>
+                <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+                    Sign In
+                </Button>
+            </Form.Item>
+        </Form>
+
         {subtitle}
     </>
 );

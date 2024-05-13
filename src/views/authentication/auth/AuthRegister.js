@@ -1,40 +1,87 @@
-import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-
-import CustomTextField from '../../../components/forms/theme-elements/CustomTextField';
-import { Stack } from '@mui/system';
-
+import { Typography, Button, Form, Input } from 'antd';
 const AuthRegister = ({ title, subtitle, subtext }) => (
-    <>
-        {title ? (
-            <Typography fontWeight="700" variant="h2" mb={1}>
-                {title}
-            </Typography>
-        ) : null}
-
-        {subtext}
-
-        <Box>
-            <Stack mb={3}>
-                <Typography variant="subtitle1"
-                    fontWeight={600} component="label" htmlFor='name' mb="5px">Name</Typography>
-                <CustomTextField id="name" variant="outlined" fullWidth />
-
-                <Typography variant="subtitle1"
-                    fontWeight={600} component="label" htmlFor='email' mb="5px" mt="25px">Email Address</Typography>
-                <CustomTextField id="email" variant="outlined" fullWidth />
-
-                <Typography variant="subtitle1"
-                    fontWeight={600} component="label" htmlFor='password' mb="5px" mt="25px">Password</Typography>
-                <CustomTextField id="password" variant="outlined" fullWidth />
-            </Stack>
-            <Button color="primary" variant="contained" size="large" fullWidth component={Link} to="/auth/login">
-                Sign Up
-            </Button>
-        </Box>
-        {subtitle}
-    </>
+  <>
+    {title ? (
+      <Typography.Title level={2} style={{ fontWeight: '700', marginBottom: '8px' }}>
+        {title}
+      </Typography.Title>
+    ) : null}
+    {subtext}
+    <Form
+      name="registerForm"
+      onFinish={(values) => {
+      }}
+      layout='vertical'
+      initialValues={{
+        remember: true,
+      }}
+    >
+      <Form.Item
+        label="Name"
+        name="name"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your name!',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="Email Address"
+        name="email"
+        rules={[
+          {
+            required: true,
+            type: 'email',
+            message: 'Please input a valid email address!',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your password!',
+          },
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
+      <Form.Item
+        label="Confirm Password"
+        name="confirmPassword"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: 'Please confirm your password!',
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error('The two passwords that you entered do not match!'));
+            },
+          }),
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+          Sign Up
+        </Button>
+      </Form.Item>
+    </Form>
+    {subtitle}
+  </>
 );
-
 export default AuthRegister;

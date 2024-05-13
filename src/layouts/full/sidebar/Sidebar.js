@@ -1,5 +1,4 @@
 import { useMediaQuery, Box, Drawer } from '@mui/material';
-import Logo from '../shared/logo/Logo';
 import SidebarItems from './SidebarItems';
 const Sidebar = (props) => {
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
@@ -29,7 +28,9 @@ const Sidebar = (props) => {
             }}
           >
             <Box px={3}>
-              <Logo />
+              {/* <Logo /> */}
+              <h2>Book Court</h2>
+
             </Box>
             <Box>
               <SidebarItems />
@@ -53,7 +54,8 @@ const Sidebar = (props) => {
       }}
     >
       <Box px={2}>
-        <Logo />
+        {/* <Logo /> */}
+        {/* <h2>Book Court</h2> */}
       </Box>
       <SidebarItems />
     </Drawer>

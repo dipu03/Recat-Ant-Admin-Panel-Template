@@ -19,17 +19,19 @@ const Menuitems = [
     icon: IconUser,
     href: '/user',
   },
-  {
-    id: uniqueId(),
-    title: 'Clients',
-    icon: IconUser,
-    href: '/client',
-  },
+  
   {
     id: uniqueId(),
     title: 'Blog',
     icon: IconUser,
     href: '/blog',
   },
+  {
+    id: uniqueId(),
+    title: 'Game',
+    icon: IconUser,
+    href: '/game',
+  },
 ];
+
 export default Menuitems;
