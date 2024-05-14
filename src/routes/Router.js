@@ -2,8 +2,11 @@ import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
 import Blog from '../views/pages/Blog';
-import UserPage from '../views/pages/Game';
-import AddUser from '../views/pages/AddGame';
+import UserPage from '../views/pages/User';
+import AddUser from '../views/pages/AddUser';
+import GamePage from '../views/pages/Game';
+import AddGame from '../views/pages/AddGame';
+
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
 const Dashboard = Loadable(lazy(() => import('../views/dashboard/Dashboard')))
@@ -22,9 +25,9 @@ const Router = [
       { path: '/user', exact: true, element: <UserPage /> },
       { path: '/add-user', exact: true, element: <AddUser /> },
       { path: '/edit-user/:id', exact: true, element: <AddUser /> },
-      { path: '/game', exact: true, element: <UserPage /> },
-      { path: '/add-game', exact: true, element: <AddUser /> },
-      { path: '/edit-game/:id', exact: true, element: <AddUser /> },
+      { path: '/game', exact: true, element: <GamePage /> },
+      { path: '/add-game', exact: true, element: <AddGame /> },
+      { path: '/edit-game/:id', exact: true, element: <AddGame /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
   },

@@ -28,9 +28,7 @@ const Sidebar = (props) => {
             }}
           >
             <Box px={3}>
-              {/* <Logo /> */}
               <h2>Book Court</h2>
-
             </Box>
             <Box>
               <SidebarItems />
@@ -54,8 +52,6 @@ const Sidebar = (props) => {
       }}
     >
       <Box px={2}>
-        {/* <Logo /> */}
-        {/* <h2>Book Court</h2> */}
       </Box>
       <SidebarItems />
     </Drawer>

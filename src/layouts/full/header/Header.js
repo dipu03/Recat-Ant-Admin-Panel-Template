@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, AppBar, Toolbar, styled, Stack } from '@mui/material';
 import PropTypes from 'prop-types';
-// components
 import Profile from './Profile';
 const Header = () => {
   const AppBarStyled = styled(AppBar)(({ theme }) => ({
@@ -18,7 +17,6 @@ const Header = () => {
     color: theme.palette.text.secondary,
   }));
   return (
-    // top header
     <AppBarStyled position="sticky" color="default">
       <ToolbarStyled>
         <Box flexGrow={1} />
